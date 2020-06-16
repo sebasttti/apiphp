@@ -5,6 +5,6 @@ define('APP_PATH',dirname(dirname(__FILE__)));
 define('DB_HOST','localhost');
 define('DB_USER','root');
 define('DB_PASSWORD','');
-define('DB_NAME','rootcap');
+define('DB_NAME','apiphp');
 
 ?>

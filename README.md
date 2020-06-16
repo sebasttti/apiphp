@@ -14,6 +14,10 @@ A conitnuación se detalla sus características
 - El proyecto permite manejar rutas "lean" para solicitar información [NUNCA se deberá usar una ruta terminada en .php]
 - El proyecto está listo para descargar, y realizar la configuración de este; la cual se detallará posteriormente.
 
+## Variables de configuración
+
+- Recodar que el archivo en la ruta config/config-save.php debe ser renombrado o duplicado a config/config.php. Este archivo estará dentro del gitignore para no ser trackeado
+
 ## Información funcional
 
 El aplicativo está diseñado para uqe funcione SIEMPRE desde un directorio, ya sea localhost o un servidor. Por ejemplo localhost/apiphp/ o http://sebasjoya.com/apiphp
