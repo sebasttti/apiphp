@@ -20,8 +20,8 @@ class Index extends Controller{
         $commonModel = $this->model(get_class($this),'common');
 
         $example = $commonModel->showExample();
-
-        var_dump($example);
+        
+        imprimirJSON($example);
     }
 
 }

@@ -69,15 +69,27 @@ class Database{
     }
   
     //obtener los registros de la consulta
-    public function responseAll(){
+    public function responseAll($param = false){
       $this->execute();
-      return $this->stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if ($param == 'object') {
+            return $this->stmt->fetchAll(PDO::FETCH_OBJ);            
+        }else{
+            return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
     }
   
     //obtener los registro de la consulta
-    public function responseUnique(){
+    public function responseUnique($param = false){
         $this->execute();
-        return $this->stmt->fetch(PDO::FETCH_OBJ);
+
+        if ($param = 'object') {
+            return $this->stmt->fetch(PDO::FETCH_OBJ);            
+        }else{
+            return $this->stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
     }
   
     //obtener cantidad de registros
