@@ -14,37 +14,30 @@ class Core{
 
   public function __construct(){
     $url=$this->getUrl();
-
+  
         //primero reviso si la url[0] existe
 
         if (isset($url[0])) {
           //buscar en controladores si el controlador existe
-          if (file_exists('../app/controllers/'.ucwords($url[0]).'.php')) {
+          if (file_exists('app/controllers/'.ucwords($url[0]).'.php')) {
               // setea el controlador actual
               $this->actualController=ucwords($url[0]);
               unset($url[0]);
           }else{
-            // setea el controlador actual
-            $this->actualController="Error404";
-            unset($url[0]);
+            // Envia un mensaje y finaliza el proceso
+            JSONmensaje(show_class_error(ucwords($url[0])));
+            die();
           }
         }
 
 
           //aca trae la pagina
-          require_once('../app/controllers/'.$this->actualController.'.php');
-
-          //aca invoca la clase
-          //$this->actualController = new $this->actualController;
-
+          require_once('app/controllers/'.$this->actualController.'.php');
+          
         //chequear la segunda parte que seria el metodo
-        if (isset($url[1])) {
-          //if (method_exists($this->actualController,$url[1])) {
-              //chequeamos el metodo
-              $this->actualMethod = $url[1];
-              //desmontar el metodo
-              unset($url[1]);
-          //}
+        if (isset($url[1])) {         
+              $this->actualMethod = $url[1];              
+              unset($url[1]);          
         }
         //chequear parametros
 
@@ -54,18 +47,22 @@ class Core{
           }
         }
 
-        //hacer callback con parametros array
-        //echo $this->actualController;
+        //hacer callback con parametros array        
         $this->actualController = new $this->actualController($this->actualMethod,$this->parameters);
   }
 
   public function getUrl(){
+    
      if (isset($_GET['url'])) {
           $url = rtrim($_GET['url'],'/');
           $url = filter_var($url,FILTER_SANITIZE_URL);
           $url = explode('/',$url);
           return $url;
+      }else{
+        return array();
       }
+
+
   }
 
 }

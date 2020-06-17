@@ -4,34 +4,23 @@
 
 class Controller{
     //cargar controlador
-    public function model($method,$subcontroller){
+    public function model($class,$section){
 
-        $method = ucfirst($method);
-        $subcontroller = ucfirst($subcontroller);
+      $class = ucfirst($class);
+      $section = ucfirst($section);  
        //
-      $string = '../app/models/'.$method.'/'.$subcontroller.'.php';
+      $classPath = 'app/models/'.$class."/".$section.'.php';
     
-        if (file_exists($string)) {
-            require_once '../app/models/'.$method.'/'.$subcontroller.'.php';
+        if (file_exists($classPath)) {
+            require_once $classPath;
             //instanciar el modelo
-            return new $subcontroller;
+            return new $section;
        }else{
       //   //si el archivo no existe imprima un error
-         die('el modelo no existe');
+         JSONmensaje(show_model_error($class, $section));
+         die();
        }
     }
-
-    //cargar vista
-    public function view($view,$data=[]){
-      //chequear si la vista existe
-      if (file_exists('../app/views/'.$view.'.php')) {
-          require_once('../app/views/'.$view.'.php');
-      }else{
-        //si el archivo no existe imprima un error
-        die('la vista no existe');
-      }
-    }
-
 }
 
  ?>
