@@ -10,11 +10,7 @@ class Database{
     private $stmt;
     private $error;
   
-    public function __construct($alternate_db = null){
-  
-        if ($alternate_db !== null) {
-            $this->db_name = $alternate_db;
-        }
+    public function __construct(){
   
         //configurar conexion
         $dsn = "mysql:host=$this->host;dbname=$this->db_name";
