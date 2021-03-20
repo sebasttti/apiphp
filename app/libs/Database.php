@@ -65,7 +65,7 @@ class Database{
     }
   
     //obtener los registros de la consulta
-    public function responseAll($param = false){
+    public function fetchAll($param = false){
       $this->execute();
 
         if ($param == 'object') {
@@ -77,7 +77,7 @@ class Database{
     }
   
     //obtener los registro de la consulta
-    public function responseUnique($param = false){
+    public function fetchUnique($param = false){
         $this->execute();
 
         if ($param = 'object') {
